@@ -18,6 +18,12 @@ jobs:
       run: npm install
     - name: Run tests
       run: npm test
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
     - name: Build Docker image
       run: docker build -t dmefrain02/node-practica:latest .
     - name: Log in to Docker Hub
